@@ -15,7 +15,10 @@ $http = new React\Http\Server($socket);
 $http->on('request', function (\React\Http\Request $request, \React\Http\Response $response) use($client) {
     $response->writeHead(200, array('Content-Type' => 'text/plain'));
 
-    $httpRequest = $client->request('GET', 'https://api.dmtry.me/api/users/1');
+    $requestParameters = $request->getQuery();
+    $id = isset($requestParameters['id']) ? (int) $requestParameters['id'] : 1;
+
+    $httpRequest = $client->request('GET', 'https://api.dmtry.me/api/users/' . $id);
     $httpRequest->on('response', function (\React\HttpClient\Response $httpResponse) use($response) {
         $httpResponse->on('data', function ($data, \React\HttpClient\Response $httpResponse) use($response) {
             if ($data instanceof \GuzzleHttp\Psr7\Stream && $httpResponse->getCode() == 200) {
