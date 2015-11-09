@@ -11,7 +11,7 @@ $dnsResolver = $dnsResolverFactory->createCached('8.8.8.8', $loop);
 $factory = new React\HttpClient\Factory();
 $client = $factory->create($loop, $dnsResolver);
 
-$userCache = [];
+$userCache = new SplFixedArray(1000);
 
 $http = new React\Http\Server($socket);
 $http->on('request', function (\React\Http\Request $request, \React\Http\Response $response) use($client, &$userCache) {
