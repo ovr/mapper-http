@@ -1,0 +1,13 @@
+{
+    "name": "ovr/mapper-http",
+    "authors": [
+        {
+            "name": "Dmitry Patsura",
+            "email": "talk@dmtry.me"
+        }
+    ],
+    "require": {
+        "react/http-client": "^0.4.8",
+        "react/http": "^0.4.1"
+    }
+}
