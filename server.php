@@ -59,7 +59,6 @@ class HttpServer
                     }
 
                     $response->end("\n");
-//            $response->close();
                 });
             });
             $httpRequest->end();
@@ -69,6 +68,19 @@ class HttpServer
 
 $httpServer = new HttpServer($client);
 $http->on('request', [$httpServer, 'request']);
+
+$loop->addPeriodicTimer(1, function () {
+    $memory = memory_get_usage() / 1024;
+    $formatted = number_format($memory, 3).'K';
+    echo "Current memory usage: {$formatted}\n";
+});
+
+$loop->addPeriodicTimer(60, function () {
+    echo "Clean \n";
+    gc_collect_cycles();
+});
+
+gc_disable();
 
 $socket->listen(8080);
 $loop->run();
