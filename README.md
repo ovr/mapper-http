@@ -18,7 +18,7 @@ GET /feed?type=1
 
 #### <--- response
 
-```
+```json
 [
   {
     id: 1,
