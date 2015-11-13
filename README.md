@@ -8,13 +8,17 @@ Example:
 You are getting an array of users from another service
 and you need to response a JSON
 
+```
 ----> request
 GET /feed?type=1
 
 -> Getting an array(1,2,...n) of new posts
 -> Trying to get post from hot cache in memory else create an async request to another service api.local/post/1
-<--- response
+```
 
+#### <--- response
+
+```
 [
   {
     id: 1,
@@ -33,3 +37,4 @@ GET /feed?type=1
     ...
   },
 ]
+```
